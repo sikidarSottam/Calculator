@@ -1,0 +1,167 @@
+/*
+         * CSS Variables for easy theme management
+         * Define colors, spacing, and other common values here.
+         */
+        :root {
+            --bg-color-body: #f0f2f5; /* Light gray background */
+            --bg-color-calc-body: #2c3e50; /* Dark blue-gray for calculator body */
+            --bg-color-display: #1a252f; /* Even darker for display */
+            --text-color-light: #ecf0f1; /* Light text color */
+            --btn-bg-default: #34495e; /* Default button color */
+            --btn-bg-hover: #4a627a; /* Default button hover */
+            --btn-bg-active: #2e4053; /* Default button active */
+            --op-bg: #e67e22; /* Orange for operators */
+            --op-bg-hover: #f39c12; /* Brighter orange operator hover */
+            --op-bg-active: #d35400; /* Darker orange operator active */
+            --eq-bg: #27ae60; /* Green for equals */
+            --eq-bg-hover: #2ecc71; /* Brighter green equals hover */
+            --eq-bg-active: #229954; /* Darker green equals active */
+            --clr-bg: #e74c3c; /* Red for clear */
+            --clr-bg-hover: #c0392b; /* Darker red clear hover */
+            --clr-bg-active: #a93226; /* Even darker red clear active */
+
+            --spacing-sm: 10px;
+            --spacing-md: 15px;
+            --spacing-lg: 20px;
+            --spacing-xl: 24px;
+
+            --border-radius-sm: 10px;
+            --border-radius-md: 15px;
+            --border-radius-lg: 20px;
+
+            --font-size-btn-lg: 1.8em;
+            --font-size-btn-md: 1.5em;
+            --font-size-disp-lg: 3.2em;
+            --font-size-disp-md: 2.5em;
+
+            --shadow-sm: 0 4px 8px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 6px 12px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- Global Styles & Layout --- */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color-body);
+            display: flex; /* Use Flexbox to center content */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            min-height: 100vh; /* Ensure body takes full viewport height */
+            margin: 0;
+            padding: var(--spacing-lg); /* Add padding around the calculator */
+            box-sizing: border-box; /* Include padding in element's total width/height */
+        }
+
+        /* --- Calculator Grid Container --- */
+        .calc-grid {
+            display: grid; /* Use CSS Grid for button layout */
+            grid-template-columns: repeat(4, 1fr); /* 4 equal-width columns */
+            gap: var(--spacing-md); /* Space between grid items (buttons) */
+            padding: var(--spacing-xl); /* Padding inside the calculator body */
+            background-color: var(--bg-color-calc-body);
+            border-radius: var(--border-radius-lg); /* Rounded corners for the calculator body */
+            box-shadow: var(--shadow-lg); /* Stronger shadow for depth */
+            max-width: 400px; /* Max width for desktop view */
+            width: 100%; /* Responsive width */
+            box-sizing: border-box;
+        }
+
+        /* --- Calculator Display --- */
+        .calc-disp {
+            grid-column: span 4; /* Display spans all 4 columns */
+            background-color: var(--bg-color-display);
+            color: var(--text-color-light);
+            font-size: var(--font-size-disp-lg);
+            padding: var(--spacing-lg);
+            text-align: right;
+            border-radius: var(--border-radius-md); /* Rounded display corners */
+            margin-bottom: var(--spacing-md); /* Space below the display */
+            word-wrap: break-word; /* Allow long numbers to wrap */
+            overflow: hidden; /* Hide overflowing content */
+            min-height: 80px; /* Ensure minimum height for display */
+            display: flex; /* Use Flexbox for text alignment within display */
+            align-items: flex-end; /* Align text to the bottom */
+            justify-content: flex-end; /* Align text to the right */
+        }
+
+        /* --- Base Button Styles --- */
+        .calc-btn {
+            background-color: var(--btn-bg-default);
+            color: var(--text-color-light);
+            font-size: var(--font-size-btn-lg);
+            padding: var(--spacing-lg) 0; /* Vertical padding for button text */
+            border: none;
+            border-radius: var(--border-radius-md); /* Rounded button corners */
+            cursor: pointer;
+            /* Smooth transitions for interactive effects */
+            transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+            box-shadow: var(--shadow-sm); /* Default button shadow */
+        }
+
+        /* Button Hover and Active States */
+        .calc-btn:hover {
+            background-color: var(--btn-bg-hover);
+            transform: translateY(-2px); /* Slight lift effect */
+            box-shadow: var(--shadow-md); /* Enhanced shadow on hover */
+        }
+
+        .calc-btn:active {
+            background-color: var(--btn-bg-active);
+            transform: translateY(0); /* Press effect */
+            box-shadow: var(--shadow-sm); /* Reduced shadow on active */
+        }
+
+        /* --- Specific Button Type Styles --- */
+        .op-btn { /* Operator buttons (+, -, *, /) */
+            background-color: var(--op-bg);
+        }
+        .op-btn:hover {
+            background-color: var(--op-bg-hover);
+        }
+        .op-btn:active {
+            background-color: var(--op-bg-active);
+        }
+
+        .eq-btn { /* Equals button (=) */
+            background-color: var(--eq-bg);
+        }
+        .eq-btn:hover {
+            background-color: var(--eq-bg-hover);
+        }
+        .eq-btn:active {
+            background-color: var(--eq-bg-active);
+        }
+
+        .clr-btn { /* Clear button (C) */
+            background-color: var(--clr-bg);
+            grid-column: span 2; /* Spans two columns in the grid */
+        }
+        .clr-btn:hover {
+            background-color: var(--clr-bg-hover);
+        }
+        .clr-btn:active {
+            background-color: var(--clr-bg-active);
+        }
+
+        .zero-btn { /* Zero button (0) */
+            grid-column: span 2; /* Spans two columns in the grid */
+        }
+
+        /* --- Responsive Adjustments (Media Queries) --- */
+        @media (max-width: 600px) {
+            .calc-grid {
+                padding: var(--spacing-md);
+                gap: var(--spacing-sm);
+                border-radius: var(--border-radius-md);
+            }
+            .calc-disp {
+                font-size: var(--font-size-disp-md);
+                padding: var(--spacing-md);
+                min-height: 70px;
+            }
+            .calc-btn {
+                font-size: var(--font-size-btn-md);
+                padding: var(--spacing-md) 0;
+                border-radius: var(--border-radius-sm);
+            }
+        }
